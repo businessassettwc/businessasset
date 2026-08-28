@@ -1181,6 +1181,11 @@
             color: #ff4757;
         }
 
+        /* HIDE THE TIME TEXT - KEEP CHART RUNNING */
+        #lastUpdate {
+            display: none !important;
+        }
+
         @keyframes blink {
             0%, 100% { opacity: 1; }
             50% { opacity: 0.2; }
@@ -1352,6 +1357,7 @@
                     <div class="live-indicator">
                         <span class="live-dot"></span>
                         <span>Live updates</span>
+                        <span style="margin-left:auto;" id="lastUpdate">Updating...</span>
                     </div>
 
                     <div class="stats-bar">
