@@ -25,9 +25,7 @@
             flex-direction: column;
         }
 
-        /* ============================================================ */
         /* ===== TOP NAVIGATION BAR ===== */
-        /* ============================================================ */
         .top-nav {
             background: #0a0e1a;
             padding: 0 40px;
@@ -131,9 +129,7 @@
             cursor: pointer;
         }
 
-        /* ============================================================ */
         /* ===== MAIN LAYOUT ===== */
-        /* ============================================================ */
         .main-container {
             display: flex;
             flex: 1;
@@ -244,10 +240,7 @@
             margin-top: 4px;
         }
 
-        /* ============================================================ */
         /* ===== PAGE 1 – DASHBOARD ===== */
-        /* ============================================================ */
-
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -289,11 +282,11 @@
             color: #ff4757;
         }
 
-.dashboard-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 20px;
-}
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
 
         .card {
             background: #0a0e1a;
@@ -396,10 +389,7 @@
             font-size: 11px;
         }
 
-        /* ============================================================ */
         /* ===== PAGE 2 – TRADING ===== */
-        /* ============================================================ */
-
         .trading-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -614,10 +604,7 @@
             }
         }
 
-        /* ============================================================ */
         /* ===== PAGE 3 – RESULTS ===== */
-        /* ============================================================ */
-
         .results-table {
             width: 100%;
             border-collapse: collapse;
@@ -672,10 +659,7 @@
             font-weight: 600;
         }
 
-        /* ============================================================ */
         /* ===== PAGE 4 – ASSET HOLDER ===== */
-        /* ============================================================ */
-
         .assets-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -771,9 +755,7 @@
             transform: none;
         }
 
-        /* ============================================================ */
         /* ===== TOAST ===== */
-        /* ============================================================ */
         .toast {
             position: fixed;
             bottom: 30px;
@@ -808,9 +790,7 @@
             background: #2a0a0a;
         }
 
-        /* ============================================================ */
         /* ===== RESPONSIVE ===== */
-        /* ============================================================ */
         @media (max-width: 1024px) {
             .dashboard-grid {
                 grid-template-columns: 1fr;
@@ -825,12 +805,39 @@
                 display: none;
             }
         }
-        font-size: 18px;
-    }
-    .stat-card {
-        padding: 12px;
-    }
-}
+
+        @media (max-width: 768px) {
+            .top-nav .nav-links {
+                display: none;
+            }
+            .sidebar {
+                display: none;
+            }
+            .main-container {
+                padding: 10px;
+            }
+            .stats-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .dashboard-grid {
+                grid-template-columns: 1fr !important;
+            }
+            .trading-grid {
+                grid-template-columns: 1fr !important;
+            }
+            .assets-grid {
+                grid-template-columns: 1fr !important;
+            }
+            .mobile-nav {
+                display: block;
+            }
+            .stat-card .stat-value {
+                font-size: 18px;
+            }
+            .stat-card {
+                padding: 12px;
+            }
+        }
 
         @media (max-width: 480px) {
             .stats-grid {
@@ -907,46 +914,11 @@
         .mobile-nav .mobile-nav-item.active {
             color: #1199FA;
         }
-       /* ===== MOBILE FIX ===== */
-    @media (max-width: 768px) {
-        .top-nav .nav-links {
-            display: none;
-        }
-        .sidebar {
-            display: none;
-        }
-        .main-container {
-            padding: 10px;
-        }
-        .stats-grid {
-            grid-template-columns: 1fr 1fr;
-        }
-        .dashboard-grid {
-            grid-template-columns: 1fr !important;
-        }
-        .trading-grid {
-            grid-template-columns: 1fr !important;
-        }
-        .assets-grid {
-            grid-template-columns: 1fr !important;
-        }
-        .mobile-nav {
-            display: block;
-        }
-        .stat-card .stat-value {
-            font-size: 18px;
-        }
-        .stat-card {
-            padding: 12px;
-        }
-    }
     </style>
 </head>
 <body>
 
-    <!-- ============================================================ -->
     <!-- ===== TOP NAV ===== -->
-    <!-- ============================================================ -->
     <nav class="top-nav">
         <div class="logo">
             <div class="logo-icon">◈</div>
@@ -965,9 +937,7 @@
         </div>
     </nav>
 
-    <!-- ============================================================ -->
     <!-- ===== MAIN ===== -->
-    <!-- ============================================================ -->
     <div class="main-container">
 
         <!-- ===== SIDEBAR ===== -->
@@ -982,9 +952,7 @@
         <!-- ===== CONTENT ===== -->
         <div class="content">
 
-            <!-- ============================================================ -->
             <!-- ===== PAGE 1 – DASHBOARD ===== -->
-            <!-- ============================================================ -->
             <div class="page active" id="page1">
                 <div class="page-header">
                     <h1>Dashboard</h1>
@@ -1073,9 +1041,7 @@
                 </div>
             </div>
 
-            <!-- ============================================================ -->
             <!-- ===== PAGE 2 – TRADING ===== -->
-            <!-- ============================================================ -->
             <div class="page" id="page2">
                 <div class="page-header">
                     <h1>Trading</h1>
@@ -1090,26 +1056,26 @@
                             <div class="change" id="btcChange"><i class="fas fa-arrow-up"></i> +0.00% (24h)</div>
                         </div>
 
-<div class="trade-buttons">
-    <button class="trade-btn up" id="buyUpBtn"><i class="fas fa-arrow-up"></i> Buy Up</button>
-    <button class="trade-btn down" id="buyDownBtn"><i class="fas fa-arrow-down"></i> Buy Down</button>
-</div>
+                        <div class="trade-buttons">
+                            <button class="trade-btn up" id="buyUpBtn"><i class="fas fa-arrow-up"></i> Buy Up</button>
+                            <button class="trade-btn down" id="buyDownBtn"><i class="fas fa-arrow-down"></i> Buy Down</button>
+                        </div>
 
                         <div style="background:#0a0e1a; border-radius:14px; padding:16px 20px; border:1px solid rgba(255,255,255,0.04);">
                             <label style="font-size:12px; color:#667799; font-weight:500; display:block; margin-bottom:10px;">
                                 <i class="far fa-clock"></i> Trade Duration
                             </label>
-<div class="duration-pills" id="durationPills">
-    <button class="duration-pill" data-seconds="10" onclick="return false;">10s</button>
-    <button class="duration-pill active" data-seconds="15">15s</button>
-    <button class="duration-pill" data-seconds="30" onclick="return false;">30s</button>
-    <button class="duration-pill" data-seconds="60" onclick="return false;">1m</button>
-    <button class="duration-pill" data-seconds="300" onclick="return false;">5m</button>
-    <button class="duration-pill" data-seconds="600" onclick="return false;">10m</button>
-    <button class="duration-pill" data-seconds="900" onclick="return false;">15m</button>
-    <button class="duration-pill" data-seconds="1800" onclick="return false;">30m</button>
-    <button class="duration-pill" data-seconds="3600" onclick="return false;">1h</button>
-</div>
+                            <div class="duration-pills" id="durationPills">
+                                <button class="duration-pill" data-seconds="10">10s</button>
+                                <button class="duration-pill active" data-seconds="15">15s</button>
+                                <button class="duration-pill" data-seconds="30">30s</button>
+                                <button class="duration-pill" data-seconds="60">1m</button>
+                                <button class="duration-pill" data-seconds="300">5m</button>
+                                <button class="duration-pill" data-seconds="600">10m</button>
+                                <button class="duration-pill" data-seconds="900">15m</button>
+                                <button class="duration-pill" data-seconds="1800">30m</button>
+                                <button class="duration-pill" data-seconds="3600">1h</button>
+                            </div>
                         </div>
                     </div>
 
@@ -1129,9 +1095,9 @@
                                 </div>
                             </div>
 
-<button class="confirm-btn" id="confirmTradeBtn" style="margin-top:20px;opacity:0.5;cursor:not-allowed;" disabled>
-    <i class="fas fa-lock"></i> Confirm Trade
-</button>
+                            <button class="confirm-btn" id="confirmTradeBtn" style="margin-top:20px;opacity:0.5;cursor:not-allowed;" disabled>
+                                <i class="fas fa-lock"></i> Confirm Trade
+                            </button>
 
                             <div style="font-size:12px; color:#445577; text-align:center; margin-top:12px;">
                                 <i class="fas fa-shield-alt"></i> Your funds are secure
@@ -1141,9 +1107,7 @@
                 </div>
             </div>
 
-            <!-- ============================================================ -->
             <!-- ===== PAGE 3 – RESULTS ===== -->
-            <!-- ============================================================ -->
             <div class="page" id="page3">
                 <div class="page-header">
                     <h1>Trade Results</h1>
@@ -1168,21 +1132,9 @@
                                 </tr>
                             </thead>
                             <tbody id="resultsBody">
-</tr>
-</thead>
-<tbody id="resultsBody">
-    <tr>
-       <td>BTC/USD</td>
-        <td><span style="color:#00c897;">▲ Buy Up</span></td>
-        <td>15s</td>
-        <td>$150.00</td>
-        <td><span class="status-badge win">Win</span></td>
-        <td class="profit-positive">+$70.00</td>
-    </tr>
-</tr>
-</tbody>
-</table>
-</tr>                                        <i class="fas fa-inbox" style="font-size:24px; display:block; margin-bottom:10px;"></i>
+                                <tr>
+                                    <td colspan="6" style="text-align:center; color:#667799; padding:30px 0;">
+                                        <i class="fas fa-inbox" style="font-size:24px; display:block; margin-bottom:10px;"></i>
                                         No trades yet
                                     </td>
                                 </tr>
@@ -1192,113 +1144,111 @@
                 </div>
             </div>
 
-            <!-- ============================================================ -->
-<!-- ===== PAGE 4 – ASSET HOLDER ===== -->
-<div class="page" id="page4">
-    <div class="page-header">
-        <h1>Asset Holder</h1>
-        <p>View your holdings and withdraw funds</p>
-    </div>
+            <!-- ===== PAGE 4 – ASSET HOLDER ===== -->
+            <div class="page" id="page4">
+                <div class="page-header">
+                    <h1>Asset Holder</h1>
+                    <p>View your holdings and withdraw funds</p>
+                </div>
 
-    <div class="assets-grid">
-        <!-- Your Holdings -->
-        <div class="card">
-            <div class="card-title"><i class="fas fa-landmark"></i> Your Holdings</div>
-            <div class="scrollable" style="max-height:340px;">
-                <div class="asset-row">
-                    <div class="asset-left">
-                        <div class="asset-icon btc">₿</div>
-                        <div><div class="asset-name">Bitcoin</div><div class="asset-symbol">BTC</div></div>
+                <div class="assets-grid">
+                    <!-- Your Holdings -->
+                    <div class="card">
+                        <div class="card-title"><i class="fas fa-landmark"></i> Your Holdings</div>
+                        <div class="scrollable" style="max-height:340px;">
+                            <div class="asset-row">
+                                <div class="asset-left">
+                                    <div class="asset-icon btc">₿</div>
+                                    <div><div class="asset-name">Bitcoin</div><div class="asset-symbol">BTC</div></div>
+                                </div>
+                                <div class="asset-right">
+                                    <div class="asset-value">0.00789886 BTC</div>
+                                    <div style="font-size:12px; color:#667799;">$640.36</div>
+                                </div>
+                            </div>
+                            <div class="asset-row">
+                                <div class="asset-left">
+                                    <div class="asset-icon eth">⟠</div>
+                                    <div><div class="asset-name">Ethereum</div><div class="asset-symbol">ETH</div></div>
+                                </div>
+                                <div class="asset-right">
+                                    <div class="asset-value">0.0000 ETH</div>
+                                    <div style="font-size:12px; color:#667799;">$0.00</div>
+                                </div>
+                            </div>
+                            <div class="asset-row">
+                                <div class="asset-left">
+                                    <div class="asset-icon usdc">$</div>
+                                    <div><div class="asset-name">USD Coin</div><div class="asset-symbol">USDC</div></div>
+                                </div>
+                                <div class="asset-right">
+                                    <div class="asset-value">0.00 USDC</div>
+                                    <div style="font-size:12px; color:#667799;">$0.00</div>
+                                </div>
+                            </div>
+                            <div class="asset-row">
+                                <div class="asset-left">
+                                    <div class="asset-icon sol">◎</div>
+                                    <div><div class="asset-name">Solana</div><div class="asset-symbol">SOL</div></div>
+                                </div>
+                                <div class="asset-right">
+                                    <div class="asset-value">0.0000 SOL</div>
+                                    <div style="font-size:12px; color:#667799;">$0.00</div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="asset-right">
-                        <div class="asset-value">0.00789886 BTC</div>
-                        <div style="font-size:12px; color:#667799;">$640.36</div>
-                    </div>
-                </div>
-                <div class="asset-row">
-                    <div class="asset-left">
-                        <div class="asset-icon eth">⟠</div>
-                        <div><div class="asset-name">Ethereum</div><div class="asset-symbol">ETH</div></div>
-                    </div>
-                    <div class="asset-right">
-                        <div class="asset-value">0.0000 ETH</div>
-                        <div style="font-size:12px; color:#667799;">$0.00</div>
-                    </div>
-                </div>
-                <div class="asset-row">
-                    <div class="asset-left">
-                        <div class="asset-icon usdc">$</div>
-                        <div><div class="asset-name">USD Coin</div><div class="asset-symbol">USDC</div></div>
-                    </div>
-                    <div class="asset-right">
-                        <div class="asset-value">0.00 USDC</div>
-                        <div style="font-size:12px; color:#667799;">$0.00</div>
-                    </div>
-                </div>
-                <div class="asset-row">
-                    <div class="asset-left">
-                        <div class="asset-icon sol">◎</div>
-                        <div><div class="asset-name">Solana</div><div class="asset-symbol">SOL</div></div>
-                    </div>
-                    <div class="asset-right">
-                        <div class="asset-value">0.0000 SOL</div>
-                        <div style="font-size:12px; color:#667799;">$0.00</div>
+
+                    <!-- Withdraw Section -->
+                    <div class="withdraw-section">
+                        <h3><i class="fas fa-arrow-right-from-bracket" style="color:#1199FA;"></i> Withdraw Funds</h3>
+                        <p>Withdraw your funds to an external wallet.</p>
+
+                        <div class="withdraw-input-group">
+                            <label><i class="fas fa-wallet"></i> Wallet Address</label>
+                            <input type="text" id="withdrawAddress" placeholder="Enter your wallet address" />
+                        </div>
+
+                        <div class="withdraw-input-group">
+                            <label><i class="fas fa-dollar-sign"></i> Withdrawal Amount (USD)</label>
+                            <input type="number" id="withdrawAmount" placeholder="Enter amount to withdraw" min="1" step="1" />
+                        </div>
+
+                        <div class="withdraw-input-group">
+                            <label><i class="fas fa-coin"></i> Select Currency</label>
+                            <select id="withdrawCurrency">
+                                <option value="BTC">Bitcoin (BTC)</option>
+                                <option value="ETH">Ethereum (ETH)</option>
+                                <option value="USDC">USD Coin (USDC)</option>
+                                <option value="SOL">Solana (SOL)</option>
+                            </select>
+                        </div>
+
+                        <div style="background:rgba(255,255,255,0.02); border-radius:10px; padding:14px 16px; border:1px solid rgba(255,255,255,0.04);">
+                            <div style="display:flex; justify-content:space-between; font-size:14px; padding:4px 0;">
+                                <span style="color:#667799;">Available Balance</span>
+                                <span style="font-weight:700;" id="availableBalance">$0.00</span>
+                            </div>
+                            <div style="display:flex; justify-content:space-between; font-size:14px; padding:4px 0;">
+                                <span style="color:#667799;">Withdrawal Fee</span>
+                                <span style="color:#ff4757;" id="withdrawalFee">$0.00</span>
+                            </div>
+                        </div>
+
+                        <button class="withdraw-btn" id="withdrawBtn">
+                            <i class="fas fa-arrow-right-from-bracket"></i> Submit Withdrawal
+                        </button>
+
+                        <div style="font-size:12px; color:#445577; text-align:center;">
+                            <i class="fas fa-lock"></i> Withdrawals are secure and encrypted
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-
-        <!-- Withdraw Section -->
-        <div class="withdraw-section">
-            <h3><i class="fas fa-arrow-right-from-bracket" style="color:#1199FA;"></i> Withdraw Funds</h3>
-            <p>Withdraw your funds to an external wallet.</p>
-
-            <div class="withdraw-input-group">
-                <label><i class="fas fa-wallet"></i> Wallet Address</label>
-                <input type="text" id="withdrawAddress" placeholder="Enter your wallet address" />
-            </div>
-
-            <div class="withdraw-input-group">
-                <label><i class="fas fa-dollar-sign"></i> Withdrawal Amount (USD)</label>
-                <input type="number" id="withdrawAmount" placeholder="Enter amount to withdraw" min="1" step="1" />
-            </div>
-
-            <div class="withdraw-input-group">
-                <label><i class="fas fa-coin"></i> Select Currency</label>
-                <select id="withdrawCurrency">
-                    <option value="BTC">Bitcoin (BTC)</option>
-                    <option value="ETH">Ethereum (ETH)</option>
-                    <option value="USDC">USD Coin (USDC)</option>
-                    <option value="SOL">Solana (SOL)</option>
-                </select>
-            </div>
-
-            <div style="background:rgba(255,255,255,0.02); border-radius:10px; padding:14px 16px; border:1px solid rgba(255,255,255,0.04);">
-                <div style="display:flex; justify-content:space-between; font-size:14px; padding:4px 0;">
-                    <span style="color:#667799;">Available Balance</span>
-                    <span style="font-weight:700;" id="availableBalance">$0.00</span>
-                </div>
-                <div style="display:flex; justify-content:space-between; font-size:14px; padding:4px 0;">
-                    <span style="color:#667799;">Withdrawal Fee</span>
-                    <span style="color:#ff4757;" id="withdrawalFee">$0.00</span>
-                </div>
-            </div>
-
-            <button class="withdraw-btn" id="withdrawBtn">
-                <i class="fas fa-arrow-right-from-bracket"></i> Submit Withdrawal
-            </button>
-
-            <div style="font-size:12px; color:#445577; text-align:center;">
-                <i class="fas fa-lock"></i> Withdrawals are secure and encrypted
-            </div>
-        </div>
-    </div>
-</div>
+        </div><!-- /content -->
     </div><!-- /main-container -->
 
-    <!-- ============================================================ -->
     <!-- ===== MOBILE NAV ===== -->
-    <!-- ============================================================ -->
     <div class="mobile-nav">
         <div class="mobile-nav-items">
             <button class="mobile-nav-item active" data-page="page1"><i class="fas fa-chart-pie"></i>Home</button>
@@ -1311,9 +1261,7 @@
     <!-- ===== TOAST ===== -->
     <div class="toast" id="toast"></div>
 
-    <!-- ============================================================ -->
     <!-- ===== SCRIPT ===== -->
-    <!-- ============================================================ -->
     <script>
         // ============================================================
         // NAVIGATION
@@ -1360,13 +1308,13 @@
         const durationPills = document.querySelectorAll('.duration-pill');
         let selectedDuration = 30;
 
-durationPills.forEach(pill => {
-    pill.addEventListener('click', function() {
-        durationPills.forEach(p => p.classList.remove('active'));
-        this.classList.add('active');
-        selectedDuration = parseInt(this.dataset.seconds);
-    });
-});
+        durationPills.forEach(pill => {
+            pill.addEventListener('click', function() {
+                durationPills.forEach(p => p.classList.remove('active'));
+                this.classList.add('active');
+                selectedDuration = parseInt(this.dataset.seconds);
+            });
+        });
 
         // ============================================================
         // TRADING ENGINE
@@ -1478,22 +1426,22 @@ durationPills.forEach(pill => {
                         const newBalance = currentBalance + profit;
                         updateBalance(newBalance);
 
-const recent = document.getElementById('recentActivity');
-if (recent.querySelector('.fa-inbox')) {
-    recent.innerHTML = '';
-}
-const item = document.createElement('div');
-item.className = 'recent-item';
-item.innerHTML = `
-        <span class="type ${direction === 'up' ? 'up' : 'down'}"><i class="fas fa-arrow-${direction === 'up' ? 'up' : 'down'}"></i> ${direction === 'up' ? 'Buy Up' : 'Buy Down'}</span>
-        <span class="amount">${profitDisplay}</span>
-        <span class="time">Just now</span>
-    `;
-recent.prepend(item);
+                        const recent = document.getElementById('recentActivity');
+                        if (recent.querySelector('.fa-inbox')) {
+                            recent.innerHTML = '';
+                        }
+                        const item = document.createElement('div');
+                        item.className = 'recent-item';
+                        item.innerHTML = `
+                                <span class="type ${direction === 'up' ? 'up' : 'down'}"><i class="fas fa-arrow-${direction === 'up' ? 'up' : 'down'}"></i> ${direction === 'up' ? 'Buy Up' : 'Buy Down'}</span>
+                                <span class="amount">${profitDisplay}</span>
+                                <span class="time">Just now</span>
+                            `;
+                        recent.prepend(item);
 
-while (recent.children.length > 6) {
-    recent.removeChild(recent.lastChild);
-}
+                        while (recent.children.length > 6) {
+                            recent.removeChild(recent.lastChild);
+                        }
 
                         showToast(`✅ Trade ${statusText}! ${profitDisplay}`, 'success');
 
@@ -1506,36 +1454,34 @@ while (recent.children.length > 6) {
             }, 1000);
         }
 
-confirmBtn.addEventListener('click', function() {
-    if (!selectedDirection) {
-        showToast('⚠️ Please select Buy Up or Buy Down first!', 'error');
-        return;
-    }
-    executeTrade(selectedDirection);
-});
+        confirmBtn.addEventListener('click', function() {
+            if (!selectedDirection) {
+                showToast('⚠️ Please select Buy Up or Buy Down first!', 'error');
+                return;
+            }
+            executeTrade(selectedDirection);
+        });
 
-// Track selected direction
-let selectedDirection = null;
+        // Track selected direction
+        let selectedDirection = null;
 
-buyUpBtn.addEventListener('click', function() {
-    // Mark Buy Up as selected
-    selectedDirection = 'up';
-    buyUpBtn.style.opacity = '1';
-    buyUpBtn.style.border = '3px solid #00c897';
-    buyDownBtn.style.opacity = '0.5';
-    buyDownBtn.style.border = 'none';
-    showToast('✅ Buy Up selected! Press Confirm Trade to execute.', 'success');
-});
+        buyUpBtn.addEventListener('click', function() {
+            selectedDirection = 'up';
+            buyUpBtn.style.opacity = '1';
+            buyUpBtn.style.border = '3px solid #00c897';
+            buyDownBtn.style.opacity = '0.5';
+            buyDownBtn.style.border = 'none';
+            showToast('✅ Buy Up selected! Press Confirm Trade to execute.', 'success');
+        });
 
-buyDownBtn.addEventListener('click', function() {
-    // Mark Buy Down as selected
-    selectedDirection = 'down';
-    buyDownBtn.style.opacity = '1';
-    buyDownBtn.style.border = '3px solid #ff4757';
-    buyUpBtn.style.opacity = '0.5';
-    buyUpBtn.style.border = 'none';
-    showToast('✅ Buy Down selected! Press Confirm Trade to execute.', 'success');
-});
+        buyDownBtn.addEventListener('click', function() {
+            selectedDirection = 'down';
+            buyDownBtn.style.opacity = '1';
+            buyDownBtn.style.border = '3px solid #ff4757';
+            buyUpBtn.style.opacity = '0.5';
+            buyUpBtn.style.border = 'none';
+            showToast('✅ Buy Down selected! Press Confirm Trade to execute.', 'success');
+        });
 
         // ============================================================
         // WITHDRAW FUNCTIONALITY
@@ -1546,7 +1492,6 @@ buyDownBtn.addEventListener('click', function() {
         const withdrawAddress = document.getElementById('withdrawAddress');
         const withdrawalFee = document.getElementById('withdrawalFee');
 
-        // Update fee based on currency
         withdrawCurrency.addEventListener('change', function() {
             const fees = {
                 'BTC': 0.0005,
@@ -1585,11 +1530,9 @@ buyDownBtn.addEventListener('click', function() {
                 return;
             }
 
-            // Process withdrawal
             const newBalance = balance - amount;
             updateBalance(newBalance);
 
-            // Add to recent activity
             const recent = document.getElementById('recentActivity');
             if (recent.querySelector('.fa-inbox')) {
                 recent.innerHTML = '';
@@ -1609,7 +1552,6 @@ buyDownBtn.addEventListener('click', function() {
 
             showToast(`✅ Withdrawal of $${amount.toFixed(2)} to ${address.substring(0, 6)}...${address.substring(address.length - 4)} submitted!`, 'success');
             
-            // Clear form
             withdrawAmount.value = '';
             withdrawAddress.value = '';
         });
@@ -1632,7 +1574,7 @@ buyDownBtn.addEventListener('click', function() {
         console.log('📊 Dashboard | 📈 Trading | 📋 Results | 💰 Asset Holder');
 
         // ============================================================
-        // LIVE PRICE FETCHING (Real-time coin prices)
+        // LIVE PRICE FETCHING
         // ============================================================
         async function fetchPrices() {
             try {
@@ -1641,7 +1583,6 @@ buyDownBtn.addEventListener('click', function() {
                 );
                 const data = await response.json();
                 
-                // Update BTC price on trading page
                 if (data.bitcoin) {
                     const btcPrice = data.bitcoin.usd;
                     document.querySelector('#btcPrice').innerHTML = 
@@ -1660,14 +1601,12 @@ buyDownBtn.addEventListener('click', function() {
                     btcPercentEl.textContent = `${btcChange > 0 ? '+' : ''}${btcChange.toFixed(1)}%`;
                     btcPercentEl.className = `asset-percent ${btcChange > 0 ? 'positive' : 'negative'}`;
 
-                    // Update BTC holdings value
                     const btcHoldingsValue = document.getElementById('btcHoldingsValue');
-                    const btcAmount = 0.0000; // Fixed BTC amount
+                    const btcAmount = 0.0000;
                     const btcTotalValue = btcAmount * btcPrice;
                     btcHoldingsValue.textContent = `$${btcTotalValue.toFixed(2)}`;
                 }
                 
-                // Update Ethereum
                 if (data.ethereum) {
                     const ethPrice = data.ethereum.usd;
                     const ethChange = data.ethereum.usd_24h_change;
@@ -1680,7 +1619,6 @@ buyDownBtn.addEventListener('click', function() {
                     ethPercentEl.className = `asset-percent ${ethChange > 0 ? 'positive' : 'negative'}`;
                 }
                 
-                // Update Solana
                 if (data.solana) {
                     const solPrice = data.solana.usd;
                     const solChange = data.solana.usd_24h_change;
@@ -1693,7 +1631,6 @@ buyDownBtn.addEventListener('click', function() {
                     solPercentEl.className = `asset-percent ${solChange > 0 ? 'positive' : 'negative'}`;
                 }
                 
-                // Update USD Coin (USDC should be ~$1.00)
                 if (data['usd-coin']) {
                     const usdcPrice = data['usd-coin'].usd;
                     const usdcChange = data['usd-coin'].usd_24h_change;
@@ -1711,10 +1648,7 @@ buyDownBtn.addEventListener('click', function() {
             }
         }
 
-        // Fetch prices immediately on page load
         fetchPrices();
-        
-        // Then fetch every 10 seconds
         setInterval(fetchPrices, 10000);
     </script>
 
