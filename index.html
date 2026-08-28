@@ -1512,9 +1512,13 @@ durationPills.forEach(pill => {
             }, 1000);
         }
 
-        confirmBtn.addEventListener('click', function() {
-            executeTrade('up');
-        });
+confirmBtn.addEventListener('click', function() {
+    if (!selectedDirection) {
+        showToast('⚠️ Please select Buy Up or Buy Down first!', 'error');
+        return;
+    }
+    executeTrade(selectedDirection);
+});
 
 // Track selected direction
 let selectedDirection = null;
