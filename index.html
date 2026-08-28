@@ -1516,13 +1516,28 @@ durationPills.forEach(pill => {
             executeTrade('up');
         });
 
-        buyUpBtn.addEventListener('click', function() {
-            executeTrade('up');
-        });
+// Track selected direction
+let selectedDirection = null;
 
-        buyDownBtn.addEventListener('click', function() {
-            executeTrade('down');
-        });
+buyUpBtn.addEventListener('click', function() {
+    // Mark Buy Up as selected
+    selectedDirection = 'up';
+    buyUpBtn.style.opacity = '1';
+    buyUpBtn.style.border = '3px solid #00c897';
+    buyDownBtn.style.opacity = '0.5';
+    buyDownBtn.style.border = 'none';
+    showToast('✅ Buy Up selected! Press Confirm Trade to execute.', 'success');
+});
+
+buyDownBtn.addEventListener('click', function() {
+    // Mark Buy Down as selected
+    selectedDirection = 'down';
+    buyDownBtn.style.opacity = '1';
+    buyDownBtn.style.border = '3px solid #ff4757';
+    buyUpBtn.style.opacity = '0.5';
+    buyUpBtn.style.border = 'none';
+    showToast('✅ Buy Down selected! Press Confirm Trade to execute.', 'success');
+});
 
         // ============================================================
         // WITHDRAW FUNCTIONALITY
