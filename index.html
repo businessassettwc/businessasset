@@ -8,6 +8,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+    <!-- TradingView Lightweight Charts -->
+    <script src="https://unpkg.com/lightweight-charts@4.1.0/dist/lightweight-charts.standalone.production.js">
+    </script>
     <style>
         /* ===== RESET & BASE ===== */
         * {
@@ -1009,6 +1012,179 @@
         .holder-detail-row .copy-btn:hover {
             color: #1199FA;
         }
+
+        /* ===== CHART STYLES (from USDT chart) ===== */
+        .chart-container {
+            background: #0a0e1a;
+            border-radius: 14px;
+            padding: 16px 18px;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            width: 100%;
+        }
+
+        .chart-container .chart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .chart-container .chart-header .left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .chart-container .chart-header .left .icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #26a17b, #1a7a5e);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 800;
+            color: #fff;
+        }
+
+        .chart-container .chart-header .left .pair {
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .chart-container .chart-header .left .pair small {
+            color: #667799;
+            font-weight: 400;
+            font-size: 12px;
+        }
+
+        .chart-container .chart-header .right {
+            text-align: right;
+        }
+
+        .chart-container .chart-header .right .price {
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .chart-container .chart-header .right .change {
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .chart-container .chart-header .right .change.positive {
+            color: #00c897;
+        }
+        .chart-container .chart-header .right .change.negative {
+            color: #ff4757;
+        }
+
+        .chart-container .timeframe-bar {
+            display: flex;
+            gap: 4px;
+            margin-bottom: 10px;
+            flex-wrap: wrap;
+        }
+
+        .chart-container .timeframe-btn {
+            padding: 4px 12px;
+            border-radius: 6px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            background: rgba(255, 255, 255, 0.03);
+            color: #667799;
+            font-size: 11px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: 0.2s;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .chart-container .timeframe-btn:hover {
+            border-color: #26a17b;
+            color: #fff;
+        }
+
+        .chart-container .timeframe-btn.active {
+            background: linear-gradient(135deg, #26a17b, #1a7a5e);
+            border-color: #26a17b;
+            color: #fff;
+            box-shadow: 0 2px 8px rgba(38, 161, 123, 0.2);
+        }
+
+        .chart-container .chart-wrapper {
+            position: relative;
+            width: 100%;
+            height: 280px;
+            background: #0a0e1a;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+        }
+
+        .chart-container .chart-wrapper #chart {
+            width: 100%;
+            height: 100%;
+        }
+
+        .chart-container .live-indicator {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 10px;
+            font-size: 11px;
+            color: #667799;
+        }
+
+        .chart-container .live-indicator .live-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #00c897;
+            animation: blink 1.2s ease-in-out infinite;
+        }
+
+        .chart-container .stats-bar {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .chart-container .stat-item {
+            background: rgba(255, 255, 255, 0.02);
+            padding: 6px 10px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+        }
+
+        .chart-container .stat-item .label {
+            font-size: 9px;
+            color: #667799;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 500;
+        }
+
+        .chart-container .stat-item .value {
+            font-size: 13px;
+            font-weight: 600;
+            margin-top: 1px;
+        }
+
+        .chart-container .stat-item .value.green {
+            color: #00c897;
+        }
+        .chart-container .stat-item .value.red {
+            color: #ff4757;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.2; }
+        }
     </style>
 </head>
 <body>
@@ -1143,6 +1319,62 @@
                     <p>Place your trades with Buy Up or Buy Down</p>
                 </div>
 
+                <!-- ===== USDT CHART (INTEGRATED) ===== -->
+                <div class="chart-container" style="margin-bottom:20px;">
+                    <div class="chart-header">
+                        <div class="left">
+                            <div class="icon">₮</div>
+                            <div>
+                                <div class="pair">USDT <small>/ USD</small></div>
+                            </div>
+                        </div>
+                        <div class="right">
+                            <div class="price" id="currentPrice">$0.00</div>
+                            <div class="change" id="priceChange">+0.00%</div>
+                        </div>
+                    </div>
+
+                    <div class="timeframe-bar">
+                        <button class="timeframe-btn" data-interval="1m">1m</button>
+                        <button class="timeframe-btn" data-interval="5m">5m</button>
+                        <button class="timeframe-btn active" data-interval="15m">15m</button>
+                        <button class="timeframe-btn" data-interval="30m">30m</button>
+                        <button class="timeframe-btn" data-interval="1h">1h</button>
+                        <button class="timeframe-btn" data-interval="4h">4h</button>
+                        <button class="timeframe-btn" data-interval="1d">1d</button>
+                        <button class="timeframe-btn" data-interval="1w">1w</button>
+                    </div>
+
+                    <div class="chart-wrapper">
+                        <div id="chart"></div>
+                    </div>
+
+                    <div class="live-indicator">
+                        <span class="live-dot"></span>
+                        <span>Live updates</span>
+                    </div>
+
+                    <div class="stats-bar">
+                        <div class="stat-item">
+                            <div class="label">Open</div>
+                            <div class="value" id="statOpen">$0.00</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="label">High</div>
+                            <div class="value green" id="statHigh">$0.00</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="label">Low</div>
+                            <div class="value red" id="statLow">$0.00</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="label">Volume</div>
+                            <div class="value" id="statVolume">0</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- ===== END USDT CHART ===== -->
+
                 <div class="trading-grid">
                     <div class="trading-left">
                         <div class="price-display">
@@ -1272,7 +1504,7 @@
                     </div>
                     <div class="holder-detail-row">
                         <span class="detail-label">Account Status</span>
-                        <span class="detail-value green"> Verified &amp; Linked</span>
+                        <span class="detail-value green">✅ Verified &amp; Linked</span>
                     </div>
                 </div>
                 <!-- ===== END ASSET HOLDER DETAILS ===== -->
@@ -1776,6 +2008,290 @@
 
         fetchPrices();
         setInterval(fetchPrices, 10000);
+
+        // ============================================================
+        // USDT CHART SCRIPT (from second file)
+        // ============================================================
+        // SETUP CHART
+        const chartContainer = document.getElementById('chart');
+
+        const chart = LightweightCharts.createChart(chartContainer, {
+            layout: {
+                background: { color: '#0a0e1a' },
+                textColor: '#667799',
+            },
+            grid: {
+                vertLines: { color: 'rgba(255,255,255,0.04)' },
+                horzLines: { color: 'rgba(255,255,255,0.04)' },
+            },
+            crosshair: {
+                mode: LightweightCharts.CrosshairMode.Normal,
+                vertLine: { color: 'rgba(38,161,123,0.3)', width: 1 },
+                horzLine: { color: 'rgba(38,161,123,0.3)', width: 1 },
+            },
+            rightPriceScale: {
+                borderColor: 'rgba(255,255,255,0.06)',
+            },
+            timeScale: {
+                borderColor: 'rgba(255,255,255,0.06)',
+                timeVisible: true,
+                secondsVisible: false,
+            },
+            width: chartContainer.clientWidth,
+            height: chartContainer.clientHeight,
+        });
+
+        // Resize handler
+        function resizeChart() {
+            chart.applyOptions({
+                width: chartContainer.clientWidth,
+                height: chartContainer.clientHeight,
+            });
+        }
+        window.addEventListener('resize', resizeChart);
+
+        // Candlestick series
+        const candleSeries = chart.addCandlestickSeries({
+            upColor: '#00c897',
+            downColor: '#ff4757',
+            borderUpColor: '#00c897',
+            borderDownColor: '#ff4757',
+            wickUpColor: '#00c897',
+            wickDownColor: '#ff4757',
+        });
+
+        // Volume series
+        const volumeSeries = chart.addHistogramSeries({
+            color: 'rgba(38,161,123,0.3)',
+            priceFormat: {
+                type: 'volume',
+            },
+            priceScaleId: '',
+        });
+
+        // STATE
+        let currentInterval = '15m';
+        let priceData = [];
+        let volumeData = [];
+        let lastPrice = 0;
+
+        // DOM elements
+        const priceEl = document.getElementById('currentPrice');
+        const changeEl = document.getElementById('priceChange');
+        const lastUpdateEl = document.getElementById('lastUpdate');
+        const statOpen = document.getElementById('statOpen');
+        const statHigh = document.getElementById('statHigh');
+        const statLow = document.getElementById('statLow');
+        const statVolume = document.getElementById('statVolume');
+
+        // GENERATE MOCK DATA
+        function generateCandleData(count = 100, interval = '15m') {
+            const data = [];
+            const now = Math.floor(Date.now() / 1000);
+            let time = now - (count * getIntervalSeconds(interval));
+
+            let price = 1.00 + (Math.random() - 0.5) * 0.02;
+            let high = price;
+            let low = price;
+            let open = price;
+            let close = price;
+
+            for (let i = 0; i < count; i++) {
+                const change = (Math.random() - 0.48) * 0.015;
+                close = Math.max(price + change, 0.90);
+                open = price;
+                high = Math.max(open, close) + Math.random() * 0.01;
+                low = Math.min(open, close) - Math.random() * 0.01;
+                price = close;
+
+                data.push({
+                    time: time,
+                    open: open,
+                    high: high,
+                    low: low,
+                    close: close,
+                });
+
+                time += getIntervalSeconds(interval);
+            }
+
+            return data;
+        }
+
+        function getIntervalSeconds(interval) {
+            const map = {
+                '1m': 60,
+                '5m': 300,
+                '15m': 900,
+                '30m': 1800,
+                '1h': 3600,
+                '4h': 14400,
+                '1d': 86400,
+                '1w': 604800,
+            };
+            return map[interval] || 900;
+        }
+
+        // UPDATE CHART
+        let priceHistory = [];
+
+        function updateChart() {
+            const count = 150;
+            const intervalSeconds = getIntervalSeconds(currentInterval);
+
+            const newData = generateCandleData(count, currentInterval);
+            priceData = newData;
+
+            const last = newData[newData.length - 1];
+            const first = newData[0];
+
+            lastPrice = last.close;
+            priceEl.textContent = '$' + lastPrice.toFixed(4);
+
+            const changePercent = ((last.close - first.open) / first.open) * 100;
+            changeEl.textContent = (changePercent > 0 ? '+' : '') + changePercent.toFixed(3) + '%';
+            changeEl.className = 'change ' + (changePercent > 0 ? 'positive' : 'negative');
+
+            const allHigh = Math.max(...newData.map(d => d.high));
+            const allLow = Math.min(...newData.map(d => d.low));
+            statOpen.textContent = '$' + first.open.toFixed(4);
+            statHigh.textContent = '$' + allHigh.toFixed(4);
+            statLow.textContent = '$' + allLow.toFixed(4);
+            statVolume.textContent = (Math.random() * 500 + 50).toFixed(1) + 'M';
+
+            candleSeries.setData(newData);
+
+            volumeData = newData.map((d, i) => ({
+                time: d.time,
+                value: Math.random() * 500 + 50,
+                color: d.close > d.open ? 'rgba(0,200,151,0.3)' : 'rgba(255,71,87,0.3)',
+            }));
+            volumeSeries.setData(volumeData);
+
+            lastUpdateEl.textContent = 'Updated: ' + new Date().toLocaleTimeString();
+            priceHistory = newData;
+        }
+
+        // LIVE PRICE UPDATE
+        let liveInterval = null;
+
+        function startLiveUpdates() {
+            if (liveInterval) clearInterval(liveInterval);
+
+            liveInterval = setInterval(() => {
+                if (priceHistory.length === 0) return;
+
+                const lastCandle = priceHistory[priceHistory.length - 1];
+                const now = Math.floor(Date.now() / 1000);
+                const intervalSeconds = getIntervalSeconds(currentInterval);
+
+                const timeSinceLastCandle = now - lastCandle.time;
+
+                if (timeSinceLastCandle >= intervalSeconds) {
+                    const newPrice = lastCandle.close + (Math.random() - 0.48) * 0.008;
+                    const newCandle = {
+                        time: now - (now % intervalSeconds),
+                        open: lastCandle.close,
+                        high: Math.max(lastCandle.close, newPrice) + Math.random() * 0.005,
+                        low: Math.min(lastCandle.close, newPrice) - Math.random() * 0.005,
+                        close: newPrice,
+                    };
+                    priceHistory.push(newCandle);
+
+                    if (priceHistory.length > 200) {
+                        priceHistory = priceHistory.slice(-200);
+                    }
+
+                    candleSeries.setData(priceHistory);
+                    lastPrice = newCandle.close;
+                    priceEl.textContent = '$' + lastPrice.toFixed(4);
+
+                    const newVolume = {
+                        time: newCandle.time,
+                        value: Math.random() * 500 + 50,
+                        color: newCandle.close > newCandle.open ? 'rgba(0,200,151,0.3)' : 'rgba(255,71,87,0.3)',
+                    };
+                    volumeData.push(newVolume);
+                    if (volumeData.length > 200) {
+                        volumeData = volumeData.slice(-200);
+                    }
+                    volumeSeries.setData(volumeData);
+
+                    const allHigh = Math.max(...priceHistory.map(d => d.high));
+                    const allLow = Math.min(...priceHistory.map(d => d.low));
+                    statHigh.textContent = '$' + allHigh.toFixed(4);
+                    statLow.textContent = '$' + allLow.toFixed(4);
+
+                    lastUpdateEl.textContent = 'Updated: ' + new Date().toLocaleTimeString();
+
+                } else {
+                    const currentPrice = lastCandle.close + (Math.random() - 0.48) * 0.005;
+                    const updatedCandle = {
+                        ...lastCandle,
+                        high: Math.max(lastCandle.high, currentPrice),
+                        low: Math.min(lastCandle.low, currentPrice),
+                        close: currentPrice,
+                    };
+
+                    priceHistory[priceHistory.length - 1] = updatedCandle;
+                    candleSeries.setData(priceHistory);
+
+                    lastPrice = currentPrice;
+                    priceEl.textContent = '$' + lastPrice.toFixed(4);
+
+                    lastUpdateEl.textContent = 'Live: ' + new Date().toLocaleTimeString();
+                }
+
+            }, 2000);
+        }
+
+        // TIMEFRAME SWITCH
+        document.querySelectorAll('.timeframe-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.timeframe-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                currentInterval = this.dataset.interval;
+
+                if (liveInterval) clearInterval(liveInterval);
+
+                updateChart();
+                startLiveUpdates();
+            });
+        });
+
+        // INIT CHART
+        updateChart();
+        startLiveUpdates();
+
+        // Handle resize
+        let resizeTimeout;
+        window.addEventListener('resize', function() {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => {
+                resizeChart();
+            }, 200);
+        });
+
+        console.log('📊 Live USDT Chart loaded');
+        console.log('⏱️ Current timeframe:', currentInterval);
+        console.log('🔄 Updates every 2 seconds');
+
+        // KEYBOARD SHORTCUTS for chart
+        document.addEventListener('keydown', function(e) {
+            const intervals = ['1m', '5m', '15m', '30m', '1h', '4h', '1d', '1w'];
+            const btns = document.querySelectorAll('.timeframe-btn');
+
+            if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
+                const currentIndex = intervals.indexOf(currentInterval);
+                let newIndex = e.key === 'ArrowRight' ?
+                    Math.min(currentIndex + 1, intervals.length - 1) :
+                    Math.max(currentIndex - 1, 0);
+
+                if (newIndex !== currentIndex) {
+                    btns[newIndex].click();
+                }
+            }
+        });
     </script>
 
 </body>
