@@ -1490,17 +1490,14 @@ if (recent.querySelector('.fa-inbox')) {
 }
 const item = document.createElement('div');
 item.className = 'recent-item';
-const now = new Date();
-const timeString = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 item.innerHTML = `
         <span class="type ${direction === 'up' ? 'up' : 'down'}"><i class="fas fa-arrow-${direction === 'up' ? 'up' : 'down'}"></i> ${direction === 'up' ? 'Buy Up' : 'Buy Down'}</span>
-        <span class="amount" style="${profit >= 0 ? 'color:#00c897;' : 'color:#ff4757;'}">${profitDisplay}</span>
-        <span class="time">${timeString}</span>
+        <span class="amount">${profitDisplay}</span>
+        <span class="time">Just now</span>
     `;
 recent.prepend(item);
 
-// Keep only last 10 activities
-while (recent.children.length > 10) {
+while (recent.children.length > 6) {
     recent.removeChild(recent.lastChild);
 }
 
