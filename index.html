@@ -944,6 +944,71 @@
         .mobile-nav .mobile-nav-item:hover {
             background: rgba(255, 255, 255, 0.03);
         }
+
+        /* ===== ASSET HOLDER DETAILS CARD ===== */
+        .holder-details-card {
+            background: #0a0e1a;
+            border-radius: 14px;
+            padding: 20px 22px;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            margin-bottom: 20px;
+        }
+
+        .holder-details-card .details-title {
+            font-size: 13px;
+            color: #667799;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .holder-details-card .details-title i {
+            color: #1199FA;
+            margin-right: 8px;
+        }
+
+        .holder-detail-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+        }
+
+        .holder-detail-row:last-child {
+            border-bottom: none;
+        }
+
+        .holder-detail-row .detail-label {
+            color: #667799;
+            font-size: 14px;
+        }
+
+        .holder-detail-row .detail-value {
+            color: #fff;
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        .holder-detail-row .detail-value.green {
+            color: #66bb6a;
+        }
+
+        .holder-detail-row .detail-value.blue {
+            color: #4fc3f7;
+        }
+
+        .holder-detail-row .copy-btn {
+            cursor: pointer;
+            margin-left: 6px;
+            font-size: 14px;
+            color: #667799;
+            transition: 0.2s;
+        }
+
+        .holder-detail-row .copy-btn:hover {
+            color: #1199FA;
+        }
     </style>
 </head>
 <body>
@@ -1181,6 +1246,36 @@
                     <h1>Asset Holder</h1>
                     <p>View your holdings and withdraw funds</p>
                 </div>
+
+                <!-- ===== NEW: ASSET HOLDER DETAILS ===== -->
+                <div class="holder-details-card">
+                    <div class="details-title">
+                        <i class="fas fa-id-card"></i> ASSET HOLDER DETAILS
+                    </div>
+
+                    <div class="holder-detail-row">
+                        <span class="detail-label">Asset Holder</span>
+                        <span class="detail-value">No name</span>
+                    </div>
+                    <div class="holder-detail-row">
+                        <span class="detail-label">Recipient</span>
+                        <span class="detail-value">No name</span>
+                    </div>
+                    <div class="holder-detail-row">
+                        <span class="detail-label">Wallet Address</span>
+                        <span class="detail-value blue">
+                            123x456x789x101112x131415
+                            <span class="copy-btn" onclick="navigator.clipboard.writeText('123x456x789x101112x131415')" title="Copy to clipboard">
+                                <i class="fas fa-copy"></i>
+                            </span>
+                        </span>
+                    </div>
+                    <div class="holder-detail-row">
+                        <span class="detail-label">Account Status</span>
+                        <span class="detail-value green">✅ Verified &amp; Linked</span>
+                    </div>
+                </div>
+                <!-- ===== END ASSET HOLDER DETAILS ===== -->
 
                 <div class="assets-grid">
                     <!-- Your Holdings -->
