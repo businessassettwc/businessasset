@@ -138,7 +138,7 @@
             max-width: 1440px;
             margin: 0 auto;
             width: 100%;
-            padding-bottom: 80px;
+            padding-bottom: 70px;
         }
 
         /* ===== SIDEBAR ===== */
@@ -756,10 +756,12 @@
             transform: none;
         }
 
-        /* ===== TOAST ===== */
+        /* ============================================================ */
+        /* ===== TOAST - FIXED HIGHER ===== */
+        /* ============================================================ */
         .toast {
             position: fixed;
-            bottom: 30px;
+            bottom: 100px;
             left: 50%;
             transform: translateX(-50%);
             background: #1a2a4a;
@@ -816,7 +818,7 @@
             }
             .main-container {
                 padding: 10px;
-                padding-bottom: 80px;
+                padding-bottom: 65px;
             }
             .stats-grid {
                 grid-template-columns: 1fr 1fr;
@@ -839,6 +841,11 @@
             .stat-card {
                 padding: 12px;
             }
+            .toast {
+                bottom: 80px;
+                font-size: 13px;
+                padding: 10px 20px;
+            }
         }
 
         @media (max-width: 480px) {
@@ -857,6 +864,11 @@
             .results-table th,
             .results-table td {
                 padding: 8px 10px;
+            }
+            .toast {
+                bottom: 70px;
+                font-size: 12px;
+                padding: 8px 16px;
             }
         }
 
@@ -877,18 +889,18 @@
             border-radius: 10px;
         }
 
-        /* ===== MOBILE NAV - ALWAYS VISIBLE AT BOTTOM ===== */
+        /* ===== MOBILE NAV - SMALLER ===== */
         .mobile-nav {
             display: none;
             background: #0a0e1a;
-            border-top: 2px solid rgba(17, 153, 250, 0.3);
-            padding: 12px 0;
+            border-top: 1px solid rgba(17, 153, 250, 0.2);
+            padding: 6px 0;
             position: fixed;
             bottom: 0;
             left: 0;
             right: 0;
             z-index: 1000;
-            box-shadow: 0 -4px 30px rgba(0, 0, 0, 0.7);
+            box-shadow: 0 -2px 20px rgba(0, 0, 0, 0.5);
         }
 
         .mobile-nav .mobile-nav-items {
@@ -901,22 +913,22 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 4px;
+            gap: 2px;
             color: #667799;
-            font-size: 16px;
-            font-weight: 700;
+            font-size: 10px;
+            font-weight: 600;
             cursor: pointer;
-            padding: 12px 24px;
-            border-radius: 10px;
+            padding: 4px 16px;
+            border-radius: 8px;
             background: transparent;
             border: none;
             font-family: 'Inter', sans-serif;
-            min-width: 80px;
+            min-width: 60px;
             transition: 0.2s;
         }
 
         .mobile-nav .mobile-nav-item i {
-            font-size: 28px;
+            font-size: 18px;
             color: #667799;
             transition: 0.2s;
         }
@@ -930,7 +942,7 @@
         }
 
         .mobile-nav .mobile-nav-item:hover {
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.03);
         }
     </style>
 </head>
@@ -1266,7 +1278,7 @@
         </div><!-- /content -->
     </div><!-- /main-container -->
 
-    <!-- ===== MOBILE NAV - ALWAYS VISIBLE AT BOTTOM ===== -->
+    <!-- ===== MOBILE NAV ===== -->
     <div class="mobile-nav">
         <div class="mobile-nav-items">
             <button class="mobile-nav-item active" data-page="page1"><i class="fas fa-chart-pie"></i>Home</button>
