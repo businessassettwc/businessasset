@@ -825,33 +825,6 @@
                 display: none;
             }
         }
-
-@media (max-width: 768px) {
-    .top-nav .nav-links {
-        display: none;
-    }
-    .sidebar {
-        display: none;
-    }
-    .main-container {
-        padding: 10px;
-    }
-    .stats-grid {
-        grid-template-columns: 1fr 1fr;
-    }
-    .dashboard-grid {
-        grid-template-columns: 1fr !important;
-    }
-    .trading-grid {
-        grid-template-columns: 1fr !important;
-    }
-    .assets-grid {
-        grid-template-columns: 1fr !important;
-    }
-    .mobile-nav {
-        display: block;
-    }
-    .stat-card .stat-value {
         font-size: 18px;
     }
     .stat-card {
@@ -934,12 +907,42 @@
         .mobile-nav .mobile-nav-item.active {
             color: #1199FA;
         }
-
-@media (max-width: 768px) {
-    .mobile-nav {
-        display: block;
+       /* ===== MOBILE FIX ===== */
+    @media (max-width: 768px) {
+        .top-nav .nav-links {
+            display: none;
+        }
+        .sidebar {
+            display: none;
+        }
+        .main-container {
+            padding: 10px;
+        }
+        .stats-grid {
+            grid-template-columns: 1fr 1fr;
+        }
+        .dashboard-grid {
+            grid-template-columns: 1fr !important;
+        }
+        .trading-grid {
+            grid-template-columns: 1fr !important;
+        }
+        .assets-grid {
+            grid-template-columns: 1fr !important;
+        }
+        .mobile-nav {
+            display: block;
+        }
+        .stat-card .stat-value {
+            font-size: 18px;
+        }
+        .stat-card {
+            padding: 12px;
+        }
     }
-}
+</style>
+</head>
+<body>
     </style>
 </head>
 <body>
