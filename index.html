@@ -1259,7 +1259,7 @@
 <!-- Asset Holder Name -->
 <div class="withdraw-input-group">
     <label><i class="fas fa-wallet"></i> Wallet Address</label>
-    <input type="text" id="withdrawAddress" placeholder="Enter your wallet address or bank details" />
+    <input type="text" id="withdrawAddress" placeholder="Enter your wallet address" />
 </div>
                         <div class="withdraw-input-group">
                             <label><i class="fas fa-coin"></i> Select Currency</label>
@@ -1274,7 +1274,7 @@
 
                         <div class="withdraw-input-group">
                             <label><i class="fas fa-wallet"></i> Wallet Address</label>
-                            <input type="text" id="withdrawAddress" placeholder="Enter your wallet address or bank details" />
+                            <input type="text" id="withdrawAddress" placeholder="Enter your wallet address" />
                         </div>
 
                         <div style="background:rgba(255,255,255,0.02); border-radius:10px; padding:14px 16px; border:1px solid rgba(255,255,255,0.04);">
@@ -1582,7 +1582,7 @@ buyDownBtn.addEventListener('click', function() {
             }
 
             if (!address) {
-                showToast('⚠️ Please enter your wallet address or bank details', 'error');
+                showToast('⚠️ Please enter your wallet address', 'error');
                 return;
             }
 
