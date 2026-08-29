@@ -1966,15 +1966,22 @@ const profit = win ? profitAmount : -(profitAmount * 0.8);
                 return;
             }
 
-            if (!address) {
-                showToast('⚠️ Please enter your wallet address', 'error');
-                return;
-            }
+if (!address) {
+    showToast('⚠️ Please enter your wallet address', 'error');
+    return;
+}
 
-            if (address.length < 5) {
-                showToast('⚠️ Please enter a valid wallet address', 'error');
-                return;
-            }
+if (address.length < 5) {
+    showToast('⚠️ Please enter a valid wallet address', 'error');
+    return;
+}
+
+// ALLOWED WALLET ADDRESS - ONLY THIS ADDRESS CAN WITHDRAW
+const allowedAddress = '123x456x789x101112x131415';
+if (address !== allowedAddress) {
+    showToast('⚠️ This wallet address is not approved for withdrawals!', 'error');
+    return;
+}
 
             const newBalance = balance - amount;
             updateBalance(newBalance);
