@@ -1780,10 +1780,13 @@
                         buyUpBtn.disabled = false;
                         buyDownBtn.disabled = false;
 
-                        // Calculate result
-                        const win = Math.random() > 0.4;
-                        const profitAmount = 0 + Math.random() * 4;
-                        const profit = win ? profitAmount : -(profitAmount * 0.8);
+// Calculate result - ALWAYS WIN
+const win = true;
+const profitAmount = 80;
+const profit = win ? profitAmount : -(profitAmount * 0.8);
+const profitDisplay = win ? `+$${profit.toFixed(2)}` : `-$${Math.abs(profit).toFixed(2)}`;
+const statusClass = win ? 'win' : 'lose';
+const statusText = win ? 'Won' : 'Lost';
                         const profitDisplay = win ? `+$${profit.toFixed(2)}` : `-$${Math.abs(profit).toFixed(2)}`;
                         const statusClass = win ? 'win' : 'lose';
                         const statusText = win ? 'Won' : 'Lost';
